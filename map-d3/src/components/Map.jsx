@@ -26,16 +26,18 @@ export default function Map() {
 
         const data = async () => {
             const worldData = await extractdata();
-
-            // console.log(worldData);
+            console.log(worldData[0]);
+            const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+           
             svg.selectAll("path")
                 .data(worldData)
                 .enter().append("path")
+                .attr('class','mycount')
                 .attr("d", path)
-                .attr("fill", "#69b3a2")
+                .attr("fill", d =>colorScale(d.countryName[0].economy))
                 .attr("stroke", "#000")
                 .on("mouseover", function (event, d) {
-                    d3.select(this).attr("fill", "#ff7f50");
+                    console.log(this);
                     const [x, y] = d3.pointer(event);
                     setToolkit({
                         visible: true,
@@ -49,7 +51,6 @@ export default function Map() {
                     setToolkit((prev) => ({ ...prev, x, y }));
                 })
                 .on("mouseout", function () {
-                    d3.select(this).attr("fill", "#69b3a2");
                     setToolkit({ visible: false, x: 0, y: 0, country: {} });
                 });
         };
@@ -57,13 +58,12 @@ export default function Map() {
     }, []);
 
     return (
-        <div id='map' className='relative flex h-95 w-100 justify-center items-center'>
-            <svg ref={svgRef}></svg>
+        <div id='map' className='relative flex w-100 justify-center items-center'>
+            <svg ref={svgRef} ></svg>
             {toolkit.visible &&
                 <Tooltip x={toolkit.x} y={toolkit.y} country={toolkit.country} />
 
             }
-        
         </div>
     );
 }
