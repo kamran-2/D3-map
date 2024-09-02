@@ -8,22 +8,25 @@ const extractdata = async () => {
     "https://unpkg.com/world-atlas@1.1.4/world/50m.tsv"
   );
 
-  console.log(tsvdata);
   const countries = topojson.feature(
     jsondata,
     jsondata.objects.countries
   ).features;
 
-
   const other_data = await get_otherdata();
+  console.log(other_data[0].name.common);
 
   countries.forEach((d) => {
     d.countryName = tsvdata.filter((value) => value.iso_n3 == d.id);
   });
-  
-  console.log(countries);
 
-  
+  countries.forEach((d) => {
+    d.other_data = other_data.filter(
+      (value) => value.name.common == d.countryName[0].sovereignt
+    );
+  });
+
+  console.log(countries);
 
   return countries;
 };

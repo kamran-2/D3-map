@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function Tooltip(prop) {
-    console.log(prop)
+    // console.log(prop)
     return (
      
         <div className='tooltip absolute p-2 bg-slate-500 rounded-sm ' style={{
