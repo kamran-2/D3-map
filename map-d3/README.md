@@ -12,6 +12,11 @@ In this project, I have used D3 for making the map and added interaction
 * Income
 * Area
 * Capital
+### Preview
+![preview](/map-d3/src/assets/sc1.png)
+
+![preview](/map-d3/src/assets/sc2.png)
+
 ### API
 
 ```
