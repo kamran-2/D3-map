@@ -4,7 +4,7 @@ export default function Dropdown(prop) {
     console.log(prop)
   return (
       <div className="absolute top-0 left-0 p-4">
-          <label htmlFor="colorProperty" className="mr-2">Color by:</label>
+         
           <select
               id="colorProperty"
               value={prop.selectedProperty}

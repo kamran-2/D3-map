@@ -40,6 +40,7 @@ export default function Map() {
 
             // Get unique values for the selected property
             const uniqueValues = [...new Set(worldData.map(d => d.countryName[0][selectedProperty]))];
+            uniqueValues.sort();
             setUniqueValues(uniqueValues);  // Set unique values state
 
             if (selectedProperty == 'pop_est') {
